@@ -1,0 +1,46 @@
+import time
+import random
+class Lightbulb:
+    def __init__(self, color,burnoutChance,IsOn,name):
+        self.color = color
+        self.burnoutChance = burnoutChance
+        self.IsOn = IsOn
+        self.Broken = False
+        self.name = name
+        
+        print(self.color)
+    def TurnOn(self):
+        if self.Broken == False:
+            if self.IsOn == "off":
+                self.IsOn = "on"
+                print(self.name,self.IsOn)
+            else:
+                self.IsOn = "off"
+                print(self.name,self.IsOn)
+        
+    def Burnout(self):
+        randomthing = random.randrange(0,100)
+        if (randomthing < self.burnoutChance and self.IsOn == "on" and self.Broken != True):
+            
+            self.Broken = True
+            print(self.name,"Broke")
+            
+Light1 = Lightbulb("Green",5,"off","Green Bulb")
+Light2 = Lightbulb("Yellow",2,"off","Yellow Bulb")
+Light3 = Lightbulb("Red",1,"off","Red Bulb")
+
+while True:
+    time.sleep(1)
+    Light1.TurnOn()
+    Light2.TurnOn()
+    Light3.TurnOn()
+    time.sleep(0.5)
+    for i in range(30):
+        Light1.Burnout()
+        Light2.Burnout()
+        Light3.Burnout()
+ 
+    time.sleep(0.5)
+    Light1.TurnOn()
+    Light2.TurnOn()
+    Light3.TurnOn()
